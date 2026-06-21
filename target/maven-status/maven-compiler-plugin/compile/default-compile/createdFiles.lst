@@ -1,0 +1,6 @@
+com\mycompany\e\mart\helper\FactoryProvider.class
+com\mycompany\e\mart\resources\JakartaEE8Resource.class
+com\learn\emart\entities\User.class
+com\learn\emart\entities\Product.class
+com\learn\emart\entities\Category.class
+com\mycompany\e\mart\JakartaRestConfiguration.class
