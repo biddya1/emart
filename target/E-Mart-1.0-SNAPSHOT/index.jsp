@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>E-Mart</title>
+    <title>E-Mart -Home</title>
+    <%@include file="components/common_css_js.jsp" %>
 </head>
 <body>
 
