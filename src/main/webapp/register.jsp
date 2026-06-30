@@ -19,6 +19,7 @@
             <div class="col-md-5 offset-md-3">
 
                 <div class="card shadow-lg border-0">
+                    <%@include file="components/message.jsp"%>
 
                     <div class="card-body p-4">
 
