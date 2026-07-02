@@ -1,13 +1,18 @@
 <%
-String message = (String) session.getAttribute("message");
+String msg = (String) session.getAttribute("message");
 
-if (message != null) {
+if (msg != null) {
 %>
 
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <%= message %>
 
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <%= msg %>
+
+    <button type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"></button>
+
 </div>
 
 <%

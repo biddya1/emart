@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <title>Login - E-Mart</title>
 
     <%@include file="components/common_css_js.jsp" %>
@@ -25,7 +26,7 @@
 
                 <div class="card shadow-lg border-0 rounded-4">
 
-                    <%@include file="components/message.jsp"%>
+                    <%@include file="components/message.jsp" %>
 
                     <div class="card-body p-4">
 
@@ -59,7 +60,7 @@
                                     type="email"
                                     name="user_email"
                                     class="form-control"
-                                    placeholder="Enter Email"
+                                    placeholder="Enter your email"
                                     required>
 
                             </div>
@@ -77,15 +78,14 @@
                                     type="password"
                                     name="user_password"
                                     class="form-control"
-                                    placeholder="Enter Password"
+                                    placeholder="Enter your password"
                                     required>
 
                             </div>
 
-                            <div class="container text-center mt-4">
+                            <div class="text-center mt-4">
 
-                                <button type="submit"
-                                        class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary px-4">
 
                                     <i class="bi bi-box-arrow-in-right"></i>
 
@@ -93,8 +93,7 @@
 
                                 </button>
 
-                                <button type="reset"
-                                        class="btn btn-outline-danger">
+                                <button type="reset" class="btn btn-outline-danger px-4">
 
                                     <i class="bi bi-arrow-clockwise"></i>
 
@@ -108,8 +107,7 @@
 
                         <div class="text-center mt-3">
 
-                            <a href="register.jsp"
-                               class="text-decoration-none">
+                            <a href="register.jsp" class="text-decoration-none">
 
                                 <i class="bi bi-person-plus-fill"></i>
 
@@ -130,5 +128,4 @@
     </div>
 
 </body>
-
 </html>
