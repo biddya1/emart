@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -55,15 +56,23 @@ public class RegisterServlet extends HttpServlet {
                 tx.commit();
                 hibernateSession.close();
 
-               HttpSession httpSession = request.getSession();
-               httpSession.setAttribute("message","Registration Successful!!User id is"+userId);    
+                HttpSession httpSession = request.getSession();
+                httpSession.setAttribute("message",
+                        "Registration Successful!! User ID is " + userId);
+
                 response.sendRedirect("register.jsp");
                 return;
-                
-                
+
             } catch (Exception e) {
-                e.printStackTrace(out);
+
+                HttpSession httpSession = request.getSession();
+                httpSession.setAttribute("message",
+                        "Email already registered! Please use another email.");
+
+                response.sendRedirect("register.jsp");
+                return;
             }
+
         }
     }
 
