@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect("normal.jsp");
 
                 } else {
-
+                  //login
                     httpSession.setAttribute("message",
                             "Unknown User Type!");
 

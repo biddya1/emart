@@ -1,97 +1,100 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.learn.emart.entities.User"%>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<%
+User user1 = (User) session.getAttribute("current-user");
+%>
 
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-        <a class="navbar-brand" href="index.jsp">
-            E-Mart
-        </a>
+<div class="container-fluid">
 
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
+    <a class="navbar-brand" href="index.jsp">
+        E-Mart
+    </a>
 
-            <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent">
 
-        </button>
+        <span class="navbar-toggler-icon"></span>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    </button>
 
-            <!-- Left Side -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                <li class="nav-item">
-                    <a class="nav-link active" href="index.jsp">
-                        Home
-                    </a>
-                </li>
+        <!-- Left Side -->
+        <ul class="navbar-nav me-auto">
 
-                <li class="nav-item dropdown">
+            <li class="nav-item">
+                <a class="nav-link active" href="index.jsp">
+                    Home
+                </a>
+            </li>
 
-                    <a class="nav-link dropdown-toggle"
-                       href="#"
-                       id="navbarDropdown"
-                       role="button"
-                       data-bs-toggle="dropdown"
-                       aria-expanded="false">
+            <li class="nav-item dropdown">
 
-                        Categories
+                <a class="nav-link dropdown-toggle"
+                   href="#"
+                   id="navbarDropdown"
+                   role="button"
+                   data-bs-toggle="dropdown">
 
-                    </a>
+                    Categories
 
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                </a>
 
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                Action
-                            </a>
-                        </li>
+                <ul class="dropdown-menu">
 
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                Another action
-                            </a>
-                        </li>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
 
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                </ul>
 
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                Something else here
-                            </a>
-                        </li>
+            </li>
 
-                    </ul>
+        </ul>
 
-                </li>
+        <!-- Right Side -->
+        <ul class="navbar-nav ms-auto">
 
-            </ul>
+        <%
+        if(user1 == null){
+        %>
 
-            <!-- Right Side -->
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="login.jsp">Login</a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="login.jsp">
-                        Login
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="register.jsp">Register</a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="register.jsp">
-                        Register
-                    </a>
-                </li>
+        <%
+        }else{
+        %>
 
-            </ul>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <%=user1.getUserName()%>
+                </a>
+            </li>
 
-        </div>
+            <li class="nav-item">
+                <a class="nav-link" href="LogoutServlet">
+                    Logout
+                </a>
+            </li>
+
+        <%
+        }
+        %>
+
+        </ul>
 
     </div>
+
+</div>
 
 </nav>

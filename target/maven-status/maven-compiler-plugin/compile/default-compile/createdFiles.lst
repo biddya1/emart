@@ -1,3 +1,4 @@
+com\learn\emart\servlets\LogoutServlet.class
 com\mycompany\e\mart\helper\FactoryProvider.class
 com\learn\emart\servlets\LoginServlet.class
 com\mycompany\e\mart\resources\JakartaEE8Resource.class
