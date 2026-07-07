@@ -4,8 +4,8 @@
 User user1 = (User) session.getAttribute("current-user");
 %>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
+<nav class="navbar navbar-expand-lg navbar-dark shadow"
+     style="background:#1e3a8a;">
 <div class="container-fluid">
 
     <a class="navbar-brand" href="index.jsp">
