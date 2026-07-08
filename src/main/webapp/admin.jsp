@@ -21,6 +21,10 @@ if(user.getUserType().equals("normal")){
 <%@include file="components/navbar.jsp"%>
 
 <div class="container admin">
+    
+    <div class="container-fluid mt-3">
+        <%@include file="components/message.jsp" %>
+    </div>
 
     <!-- First Row -->
     <div class="container mt-4">
@@ -118,7 +122,10 @@ if(user.getUserType().equals("normal")){
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <form>
+          <form action="ProductOperationServlet" method="post">
+              
+              <input type="hidden" name="operation" value="addcategory">
+              
               <div class="form-group">
                   <input type="text" class="form-control" name="categoryTitle" placeholder="Enter category title" required />
               </div>
