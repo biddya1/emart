@@ -1,4 +1,8 @@
 <%@page import="com.learn.emart.entities.User"%>
+<%@page import="java.util.List"%>
+<%@page import="com.learn.emart.entities.Category"%>
+<%@page import="com.learn.emart.dao.CategoryDao"%>
+<%@page import="com.mycompany.e.mart.helper.FactoryProvider"%>
 <%
 User user = (User)session.getAttribute("current-user");
 
@@ -92,6 +96,10 @@ if(user.getUserType().equals("normal")){
         </div>
 
         <div class="col-md-6 mb-4">
+            <div class="card shadow border-0 text-center h-100"
+                 data-bs-toggle="modal"
+                 data-bs-target="#add-product-modal"
+                 style="cursor:pointer;">
 
             <div class="card shadow border-0 text-center h-100"
                  style="cursor:pointer;">
@@ -156,3 +164,136 @@ if(user.getUserType().equals("normal")){
 
 
 <!-- end category modal -->
+
+
+
+<!--Start product modal-->
+
+
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="add-product-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Product details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <form action="ProductOperationServlet" method="post" enctype="multipart/form-data">
+
+    <input type="hidden" name="operation" value="addproduct">
+
+    <!-- Product Name -->
+    <div class="mb-3">
+        <label class="form-label"><b>Product Name</b></label>
+        <input type="text"
+               class="form-control"
+               name="pName"
+               placeholder="Enter product name"
+               required>
+    </div>
+
+    <!-- Product Description -->
+    <div class="mb-3">
+        <label class="form-label"><b>Product Description</b></label>
+        <textarea class="form-control"
+                  rows="4"
+                  name="pDesc"
+                  placeholder="Enter product description"
+                  required></textarea>
+    </div>
+
+    <!-- Product Price -->
+    <div class="mb-3">
+        <label class="form-label"><b>Product Price (Rs.)</b></label>
+        <input type="number"
+               class="form-control"
+               name="pPrice"
+               placeholder="Enter product price"
+               required>
+    </div>
+
+    <!-- Product Discount -->
+    <div class="mb-3">
+        <label class="form-label"><b>Discount (%)</b></label>
+        <input type="number"
+               class="form-control"
+               name="pDiscount"
+               placeholder="Enter discount"
+               required>
+    </div>
+
+    <!-- Product Quantity -->
+    <div class="mb-3">
+        <label class="form-label"><b>Quantity</b></label>
+        <input type="number"
+               class="form-control"
+               name="pQuantity"
+               placeholder="Enter quantity"
+               required>
+    </div>
+<%
+CategoryDao cdao = new CategoryDao(FactoryProvider.getFactory());
+List<Category> list = cdao.getCategories();
+%>
+
+<!-- Product Category -->
+<div class="mb-3">
+    <label class="form-label"><b>Select Category</b></label>
+
+    <select name="catId" class="form-select" required>
+
+        <option value="">-- Select Category --</option>
+
+        <% for(Category c : list){ %>
+
+            <option value="<%= c.getCategoryId() %>">
+                <%= c.getCategoryTitle() %>
+            </option>
+
+        <% } %>
+
+    </select>
+
+    <!-- Product Image -->
+    <div class="mb-3">
+        <label class="form-label"><b>Product Image</b></label>
+
+        <input type="file"
+               class="form-control"
+               id="pPic"
+               name="pPic"
+                required/>
+    </div>
+
+    <!-- Buttons -->
+    <div class="text-center mt-4">
+
+        <button type="submit" class="btn btn-success px-4">
+            Add Product
+        </button>
+
+        <button type="button"
+                class="btn btn-secondary px-4"
+                data-bs-dismiss="modal">
+            Close
+        </button>
+
+    </div>
+
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+Static backdrop
+
+
+<!--End product modal-->
