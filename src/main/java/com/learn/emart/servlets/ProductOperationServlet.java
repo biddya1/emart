@@ -16,8 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import java.io.File;
 
-@MultipartConfig
+
+@MultipartConfig(
+    fileSizeThreshold = 1024 * 1024,
+    maxFileSize = 1024 * 1024 * 10,
+    maxRequestSize = 1024 * 1024 * 50
+)
 public class ProductOperationServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -67,6 +73,9 @@ public class ProductOperationServlet extends HttpServlet {
                 int catId = Integer.parseInt(request.getParameter("catId"));
 
                 Part part = request.getPart("pPic");
+                System.out.println("File Name = " + part.getSubmittedFileName());
+                System.out.println("File Size = " + part.getSize());
+                System.out.println("Real Path = " + request.getRealPath("image"));
 
                 Product p = new Product();
 
@@ -90,6 +99,36 @@ public class ProductOperationServlet extends HttpServlet {
                 ProductDao pdao = new ProductDao(FactoryProvider.getFactory());
 
                 boolean flag = pdao.saveProduct(p);
+                //pic upload
+                
+                // Upload Product Image
+
+try {
+
+    String uploadPath = getServletContext().getRealPath("/")
+            + "image" + File.separator + "products";
+
+    File uploadDir = new File(uploadPath);
+
+    if (!uploadDir.exists()) {
+        uploadDir.mkdirs();
+    }
+
+    String filePath = uploadPath + File.separator + part.getSubmittedFileName();
+
+    System.out.println("Upload Path : " + filePath);
+    System.out.println("File Name : " + part.getSubmittedFileName());
+    System.out.println("File Size : " + part.getSize());
+
+    part.write(filePath);
+
+    System.out.println("Image Uploaded Successfully");
+
+} catch (Exception e) {
+
+    e.printStackTrace();
+
+}
 
                 HttpSession httpSession = request.getSession();
 
