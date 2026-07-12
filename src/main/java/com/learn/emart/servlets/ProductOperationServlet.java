@@ -8,6 +8,7 @@ import com.mycompany.e.mart.helper.FactoryProvider;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.File;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -16,8 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-import java.io.File;
-
 
 @MultipartConfig(
     fileSizeThreshold = 1024 * 1024,
@@ -33,13 +32,10 @@ public class ProductOperationServlet extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
 
-            // add category / add product
-
             String op = request.getParameter("operation");
 
             if (op.trim().equals("addcategory")) {
 
-                // Add Category
                 String title = request.getParameter("categoryTitle");
                 String description = request.getParameter("categoryDescription");
 
@@ -59,11 +55,8 @@ public class ProductOperationServlet extends HttpServlet {
 
                 response.sendRedirect("admin.jsp");
                 return;
-            }
 
-            else if (op.trim().equals("addproduct")) {
-
-                // Add Product
+            } else if (op.trim().equals("addproduct")) {
 
                 String pName = request.getParameter("pName");
                 String pDesc = request.getParameter("pDesc");
@@ -73,9 +66,9 @@ public class ProductOperationServlet extends HttpServlet {
                 int catId = Integer.parseInt(request.getParameter("catId"));
 
                 Part part = request.getPart("pPic");
+
                 System.out.println("File Name = " + part.getSubmittedFileName());
                 System.out.println("File Size = " + part.getSize());
-                System.out.println("Real Path = " + request.getRealPath("image"));
 
                 Product p = new Product();
 
@@ -86,49 +79,41 @@ public class ProductOperationServlet extends HttpServlet {
                 p.setpQuantity(pQuantity);
                 p.setpPhoto(part.getSubmittedFileName());
 
-                // Get Category
-
                 CategoryDao cdao = new CategoryDao(FactoryProvider.getFactory());
-
                 Category category = cdao.getCategoryById(catId);
 
                 p.setCategory(category);
 
-                // Save Product
-
                 ProductDao pdao = new ProductDao(FactoryProvider.getFactory());
 
                 boolean flag = pdao.saveProduct(p);
-                //pic upload
-                
+
                 // Upload Product Image
+                try {
 
-try {
+                    // ************ ONLY THIS LINE CHANGED ************
+                    String uploadPath = "C:\\Users\\Dell\\Documents\\NetBeansProjects\\E-Mart\\src\\main\\webapp\\image\\products";
+                    // ***********************************************
 
-    String uploadPath = getServletContext().getRealPath("/")
-            + "image" + File.separator + "products";
+                    File uploadDir = new File(uploadPath);
 
-    File uploadDir = new File(uploadPath);
+                    if (!uploadDir.exists()) {
+                        uploadDir.mkdirs();
+                    }
 
-    if (!uploadDir.exists()) {
-        uploadDir.mkdirs();
-    }
+                    String filePath = uploadPath + File.separator + part.getSubmittedFileName();
 
-    String filePath = uploadPath + File.separator + part.getSubmittedFileName();
+                    System.out.println("Upload Path : " + filePath);
+                    System.out.println("File Name : " + part.getSubmittedFileName());
+                    System.out.println("File Size : " + part.getSize());
 
-    System.out.println("Upload Path : " + filePath);
-    System.out.println("File Name : " + part.getSubmittedFileName());
-    System.out.println("File Size : " + part.getSize());
+                    part.write(filePath);
 
-    part.write(filePath);
+                    System.out.println("Image Uploaded Successfully");
 
-    System.out.println("Image Uploaded Successfully");
-
-} catch (Exception e) {
-
-    e.printStackTrace();
-
-}
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 HttpSession httpSession = request.getSession();
 
@@ -146,7 +131,6 @@ try {
                 response.sendRedirect("admin.jsp");
                 return;
             }
-
         }
     }
 
@@ -155,7 +139,6 @@ try {
             throws ServletException, IOException {
 
         processRequest(request, response);
-
     }
 
     @Override
@@ -163,12 +146,10 @@ try {
             throws ServletException, IOException {
 
         processRequest(request, response);
-
     }
 
     @Override
     public String getServletInfo() {
         return "Short description";
     }
-
 }

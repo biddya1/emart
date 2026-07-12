@@ -1,16 +1,204 @@
+/* ===========================
+   Common Theme
+=========================== */
+
+body{
+    background:#f4f6f9;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===========================
+   Navbar
+=========================== */
 
 .custom-bg{
-    background: #1A237E!important;
+    background:#1A237E !important;
 }
+
+.navbar{
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
+}
+
+.navbar-brand{
+    font-weight:bold;
+    font-size:24px;
+}
+
+/* ===========================
+   Admin Dashboard
+=========================== */
 
 .admin .card{
-   border:1px solid red;
-   
+    border:none;
+    border-radius:15px;
+    transition:.3s;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
 
-
 .admin .card:hover{
-    background: #e2e2e2;
+    transform:translateY(-6px);
+    box-shadow:0 12px 25px rgba(0,0,0,.18);
     cursor:pointer;
-    
+}
+
+/* ===========================
+   Category List
+=========================== */
+
+.list-group{
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.list-group-item{
+    border:none;
+    padding:14px;
+    font-weight:500;
+    transition:.3s;
+}
+
+.list-group-item:hover{
+    background:#eef2ff;
+    color:#1A237E;
+    font-weight:bold;
+}
+
+.list-group-item.active{
+    background:#1A237E !important;
+    border-color:#1A237E !important;
+}
+
+/* ===========================
+   Product Card
+=========================== */
+
+.product-card{
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    background:#fff;
+    transition:.35s;
+    box-shadow:0 6px 18px rgba(0,0,0,.10);
+}
+
+.product-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(0,0,0,.18);
+}
+
+.product-img{
+    width:100%;
+    height:220px;
+    object-fit:contain;
+    padding:18px;
+    background:#fafafa;
+    transition:.4s;
+}
+
+.product-card:hover .product-img{
+    transform:scale(1.05);
+}
+
+.card-title{
+    font-size:20px;
+    font-weight:bold;
+    color:#212529;
+}
+
+.card-text{
+    color:#6c757d;
+    font-size:14px;
+}
+
+.card-body{
+    min-height:120px;
+}
+
+.card-footer{
+    background:#fff;
+    border-top:none;
+    padding-bottom:18px;
+}
+
+/* ===========================
+   Buttons
+=========================== */
+
+.btn{
+    border-radius:25px;
+    transition:.3s;
+}
+
+.custom-bg{
+    background:#1A237E !important;
+    border:none;
+}
+
+.custom-bg:hover{
+    background:#283593 !important;
+}
+
+.btn-outline-primary:hover{
+    background:#1A237E;
+    color:#fff;
+}
+
+/* ===========================
+   Price
+=========================== */
+
+.price{
+    color:#198754;
+    font-weight:bold;
+    font-size:22px;
+}
+
+/* ===========================
+   Discount Badge
+=========================== */
+
+.discount-badge{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background:#dc3545;
+    color:#fff;
+    padding:6px 12px;
+    border-radius:25px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+/* ===========================
+   Image Container
+=========================== */
+
+.product-image-container{
+    position:relative;
+    text-align:center;
+}
+
+/* ===========================
+   Footer Buttons
+=========================== */
+
+.card-footer button{
+    margin:5px;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:768px){
+
+    .product-img{
+        height:180px;
+    }
+
+    .navbar-brand{
+        font-size:20px;
+    }
+
 }

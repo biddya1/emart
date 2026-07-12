@@ -1,6 +1,8 @@
 package com.learn.emart.dao;
 
 import com.learn.emart.entities.Product;
+import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -13,6 +15,7 @@ public class ProductDao {
         this.factory = factory;
     }
 
+    // Save Product
     public boolean saveProduct(Product product) {
 
         boolean f = false;
@@ -34,11 +37,25 @@ public class ProductDao {
         } catch (Exception e) {
 
             e.printStackTrace();
-
             f = false;
 
         }
 
         return f;
     }
+
+    // Get All Products
+    public List<Product> getAllProducts() {
+
+        Session session = this.factory.openSession();
+
+        Query query = session.createQuery("from Product");
+
+        List<Product> list = query.list();
+
+        session.close();
+
+        return list;
+    }
+
 }

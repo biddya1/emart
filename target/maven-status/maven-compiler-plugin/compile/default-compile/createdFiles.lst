@@ -1,3 +1,4 @@
+com\mycompany\e\mart\helper\Helper.class
 com\mycompany\e\mart\resources\JakartaEE8Resource.class
 com\learn\emart\dao\UserDao.class
 com\learn\emart\entities\User.class
