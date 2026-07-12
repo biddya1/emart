@@ -23,22 +23,18 @@ public class ProductDao {
         try {
 
             Session session = this.factory.openSession();
-
             Transaction tx = session.beginTransaction();
 
             session.save(product);
 
             tx.commit();
-
             session.close();
 
             f = true;
 
         } catch (Exception e) {
-
             e.printStackTrace();
             f = false;
-
         }
 
         return f;
@@ -56,6 +52,66 @@ public class ProductDao {
         session.close();
 
         return list;
+    }
+
+    // Get Product by Id
+    public Product getProductById(int pId) {
+
+        Session session = this.factory.openSession();
+
+        Product product = session.get(Product.class, pId);
+
+        session.close();
+
+        return product;
+    }
+
+    // Update Product
+    public boolean updateProduct(Product product) {
+
+        boolean f = false;
+
+        try {
+
+            Session session = this.factory.openSession();
+            Transaction tx = session.beginTransaction();
+
+            session.update(product);
+
+            tx.commit();
+            session.close();
+
+            f = true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return f;
+    }
+
+    // Delete Product
+    public boolean deleteProduct(Product product) {
+
+        boolean f = false;
+
+        try {
+
+            Session session = this.factory.openSession();
+            Transaction tx = session.beginTransaction();
+
+            session.delete(product);
+
+            tx.commit();
+            session.close();
+
+            f = true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return f;
     }
 
 }

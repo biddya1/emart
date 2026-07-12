@@ -1,6 +1,7 @@
 C:\Users\Dell\Documents\NetBeansProjects\E-Mart\src\main\java\com\learn\emart\dao\CategoryDao.java
 C:\Users\Dell\Documents\NetBeansProjects\E-Mart\src\main\java\com\learn\emart\dao\UserDao.java
 C:\Users\Dell\Documents\NetBeansProjects\E-Mart\src\main\java\com\learn\emart\entities\User.java
+C:\Users\Dell\Documents\NetBeansProjects\E-Mart\src\main\java\com\learn\emart\servlets\DeleteCategoryServlet.java
 C:\Users\Dell\Documents\NetBeansProjects\E-Mart\src\main\java\com\mycompany\e\mart\helper\FactoryProvider.java
 C:\Users\Dell\Documents\NetBeansProjects\E-Mart\src\main\java\com\learn\emart\servlets\LoginServlet.java
 C:\Users\Dell\Documents\NetBeansProjects\E-Mart\src\main\java\com\learn\emart\servlets\ProductOperationServlet.java
@@ -12,3 +13,5 @@ C:\Users\Dell\Documents\NetBeansProjects\E-Mart\src\main\java\com\learn\emart\en
 C:\Users\Dell\Documents\NetBeansProjects\E-Mart\src\main\java\com\mycompany\e\mart\JakartaRestConfiguration.java
 C:\Users\Dell\Documents\NetBeansProjects\E-Mart\src\main\java\com\learn\emart\servlets\LogoutServlet.java
 C:\Users\Dell\Documents\NetBeansProjects\E-Mart\src\main\java\com\learn\emart\entities\Category.java
+C:\Users\Dell\Documents\NetBeansProjects\E-Mart\src\main\java\com\learn\emart\servlets\UpdateProductServlet.java
+C:\Users\Dell\Documents\NetBeansProjects\E-Mart\src\main\java\com\learn\emart\servlets\DeleteProductServlet.java

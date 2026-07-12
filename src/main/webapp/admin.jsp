@@ -111,6 +111,61 @@ if(user.getUserType().equals("normal")){
                         Click here to add a new product.
                     </p>
                 </div>
+                <%
+CategoryDao cdao2 = new CategoryDao(FactoryProvider.getFactory());
+List<Category> categories = cdao2.getCategories();
+%>
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h4>All Categories</h4>
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Category Name</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                <% for(Category c : categories){ %>
+
+                    <tr>
+                        <td><%= c.getCategoryId() %></td>
+                        <td><%= c.getCategoryTitle() %></td>
+                        <td><%= c.getCategoryDescription() %></td>
+
+                        <td>
+
+                            <a href="DeleteCategoryServlet?cid=<%= c.getCategoryId() %>"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('Delete this category?');">
+
+                                Delete
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                <% } %>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
 
             </div>
 

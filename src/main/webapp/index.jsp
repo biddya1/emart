@@ -9,6 +9,8 @@
 
 <%@include file="components/common_css_js.jsp"%>
 <%@include file="components/navbar.jsp"%>
+<link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <%
     CategoryDao cdao = new CategoryDao(FactoryProvider.getFactory());
@@ -17,6 +19,7 @@
     ProductDao pdao = new ProductDao(FactoryProvider.getFactory());
     List<Product> list = pdao.getAllProducts();
 %>
+
 
 <div class="container-fluid">
 
@@ -88,8 +91,34 @@
                             <button class="btn btn-outline-primary">
                                 &#8377; <%= p.getpPrice() %>
                             </button>
+                            <br><br>
+
+                   <%
+User user = (User)session.getAttribute("current-user");
+
+if(user != null && user.getUserType().equals("admin")){
+%>
+
+<a href="updateProduct.jsp?pid=<%=p.getpId()%>" 
+   class="btn btn-sm px-4 rounded-pill shadow-sm"
+   style="background:#2563eb; color:white; border:none;">
+    Update
+</a>
+
+
+<a href="DeleteProductServlet?pid=<%=p.getpId()%>"
+   class="btn btn-sm px-4 rounded-pill shadow-sm"
+   style="background:#e11d48; color:white; border:none;"
+   onclick="return confirm('Are you sure you want to delete this product?');">
+    Delete
+</a>
+
+<%
+}
+%>
 
                         </div>
+                            
 
                     </div>
 

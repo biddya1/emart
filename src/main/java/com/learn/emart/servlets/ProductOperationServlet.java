@@ -80,9 +80,13 @@ public class ProductOperationServlet extends HttpServlet {
                 p.setpPhoto(part.getSubmittedFileName());
 
                 CategoryDao cdao = new CategoryDao(FactoryProvider.getFactory());
-                Category category = cdao.getCategoryById(catId);
+Category category = cdao.getCategoryById(catId);
 
-                p.setCategory(category);
+System.out.println("catId = " + catId);
+System.out.println("category = " + category);
+
+p.setCategory(category);
+
 
                 ProductDao pdao = new ProductDao(FactoryProvider.getFactory());
 

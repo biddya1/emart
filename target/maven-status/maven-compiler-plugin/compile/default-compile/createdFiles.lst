@@ -2,6 +2,7 @@ com\mycompany\e\mart\helper\Helper.class
 com\mycompany\e\mart\resources\JakartaEE8Resource.class
 com\learn\emart\dao\UserDao.class
 com\learn\emart\entities\User.class
+com\learn\emart\servlets\UpdateProductServlet.class
 com\learn\emart\entities\Category.class
 com\learn\emart\dao\ProductDao.class
 com\learn\emart\dao\CategoryDao.class
@@ -9,6 +10,8 @@ com\learn\emart\servlets\LogoutServlet.class
 com\learn\emart\servlets\ProductOperationServlet.class
 com\mycompany\e\mart\helper\FactoryProvider.class
 com\learn\emart\servlets\LoginServlet.class
+com\learn\emart\servlets\DeleteCategoryServlet.class
 com\learn\emart\servlets\RegisterServlet.class
+com\learn\emart\servlets\DeleteProductServlet.class
 com\learn\emart\entities\Product.class
 com\mycompany\e\mart\JakartaRestConfiguration.class

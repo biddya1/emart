@@ -15,7 +15,7 @@ public class CategoryDao {
         this.factory = factory;
     }
 
-    // Save category
+    // Save Category
     public int saveCategory(Category cat) {
 
         Session session = this.factory.openSession();
@@ -29,7 +29,7 @@ public class CategoryDao {
         return categoryId;
     }
 
-    // Get all categories
+    // Get All Categories
     public List<Category> getCategories() {
 
         Session session = this.factory.openSession();
@@ -42,21 +42,55 @@ public class CategoryDao {
 
         return list;
     }
-    
-    public Category getCategoryById(int cid)
-    {
-       Category cat=null; 
-    
+
+    // Delete Category
+    public boolean deleteCategory(Category category) {
+
+        boolean f = false;
+
         try {
+
             Session session = this.factory.openSession();
-            session.get(Category.class,cid);
+
+            Transaction tx = session.beginTransaction();
+
+            session.delete(category);
+
+            tx.commit();
+
             session.close();
-        } catch(Exception e) {
+
+            f = true;
+
+        } catch (Exception e) {
+
             e.printStackTrace();
         }
+
+        return f;
+    }
+
+    // Get Category By ID
+    public Category getCategoryById(int cid) {
+
+        Category cat = null;
+
+        try {
+
+            Session session = this.factory.openSession();
+
+            // ************ THIS WAS THE MISSING LINE ************
+            cat = session.get(Category.class, cid);
+            // ***************************************************
+
+            session.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
         return cat;
     }
+
 }
-    
-
-
