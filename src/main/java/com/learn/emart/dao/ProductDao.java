@@ -53,6 +53,19 @@ public class ProductDao {
 
         return list;
     }
+    //get all products of given category 
+    public List<Product> getAllProductsById(int cid) {
+
+        Session session = this.factory.openSession();
+
+        Query query = session.createQuery("from Product as p where p.category.categoryId=:id");
+         query.setParameter("id", cid);
+        List<Product> list = query.list();
+
+        session.close();
+
+        return list;
+    }
 
     // Get Product by Id
     public Product getProductById(int pId) {

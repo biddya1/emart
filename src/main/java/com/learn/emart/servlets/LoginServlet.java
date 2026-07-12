@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 
                 } else if (user.getUserType().equals("normal")) {
 
-                    response.sendRedirect("normal.jsp");
+                    response.sendRedirect("index.jsp");
 
                 } else {
                   //login
