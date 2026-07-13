@@ -16,6 +16,7 @@
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
+          <%@include file="components/common_modals.jsp" %>
         <h1>About page</h1>
     </body>
 </html>

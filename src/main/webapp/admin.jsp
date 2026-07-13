@@ -3,6 +3,10 @@
 <%@page import="com.learn.emart.entities.Category"%>
 <%@page import="com.learn.emart.dao.CategoryDao"%>
 <%@page import="com.mycompany.e.mart.helper.FactoryProvider"%>
+<%@page import="org.hibernate.Session"%>
+<%@page import="org.hibernate.Transaction"%>
+<%@page import="org.hibernate.query.Query"%>
+
 <%
 User user = (User)session.getAttribute("current-user");
 
@@ -17,6 +21,15 @@ if(user.getUserType().equals("normal")){
     response.sendRedirect("login.jsp");
     return;
 }
+%>
+<%
+Session hsession = FactoryProvider.getFactory().openSession();
+
+Long userCount = (Long) hsession.createQuery("select count(u) from User u").uniqueResult();
+Long categoryCount = (Long) hsession.createQuery("select count(c) from Category c").uniqueResult();
+Long productCount = (Long) hsession.createQuery("select count(p) from Product p").uniqueResult();
+
+hsession.close();
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -48,7 +61,7 @@ if(user.getUserType().equals("normal")){
             <div class="card shadow text-center border-0 h-100">
                 <div class="card-body">
                     <img src="image/teamwork.png" width="100">
-                    <h2 class="text-primary mt-3">4545</h2>
+                    <h2 class="text-primary mt-3"><%=userCount%></h2>
                     <h5 class="text-secondary">USERS</h5>
                 </div>
             </div>
@@ -58,7 +71,7 @@ if(user.getUserType().equals("normal")){
             <div class="card shadow text-center border-0 h-100">
                 <div class="card-body">
                     <img src="image/options.png" width="100">
-                    <h2 class="text-success mt-3">4355</h2>
+                    <h2 class="text-success mt-3"><%=categoryCount%></h2>
                     <h5 class="text-secondary">CATEGORIES</h5>
                 </div>
             </div>
@@ -68,7 +81,7 @@ if(user.getUserType().equals("normal")){
             <div class="card shadow text-center border-0 h-100">
                 <div class="card-body">
                     <img src="image/products.png" width="100">
-                    <h2 class="text-danger mt-3">1234</h2>
+                    <h2 class="text-danger mt-3"><%=productCount%></h2>
                     <h5 class="text-secondary">PRODUCTS</h5>
                 </div>
             </div>

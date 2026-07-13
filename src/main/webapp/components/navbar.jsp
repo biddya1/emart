@@ -58,7 +58,25 @@ User user1 = (User) session.getAttribute("current-user");
 
         <!-- Right Side -->
         <ul class="navbar-nav ms-auto">
+            <!-- Cart -->
 
+<li class="nav-item">
+    <a class="nav-link"
+       href="#"
+       data-bs-toggle="modal"
+       data-bs-target="#cart"
+       onclick="updateCart()">
+
+        <i class="fa-solid fa-cart-shopping"></i>
+
+        <span class="cart-items">
+            (0)
+        </span>
+
+    </a>
+</li>
+
+       
         <%
         if(user1 == null){
         %>

@@ -8,10 +8,12 @@
 <%@page import="com.mycompany.e.mart.helper.Helper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+
 <%@include file="components/common_css_js.jsp"%>
 <%@include file="components/navbar.jsp"%>
+<div class="container-fluid mt-4 px-4">
 
-<div class="row mt-3 mx-2">
+<div class="row mt-3">
 
 <%
 String cat = request.getParameter("category");
@@ -59,105 +61,88 @@ else{
     </div>
 
     <!-- Products -->
-    <div class="col-md-10">
+    <!-- Products -->
+<div class="col-lg-10 col-md-9">
 
-        <div class="row">
+    <div class="row g-4">
 
-        <%
-        if(list.size() == 0){
-        %>
+    <%
+    if(list.size()==0){
+    %>
 
-            <div class="col-md-12">
+        <div class="col-12">
+            <div class="alert alert-warning text-center">
+                <h4>No Products Found</h4>
+            </div>
+        </div>
 
-                <div class="alert alert-warning text-center mt-4">
+    <%
+    }else{
 
-                    <h4>No Products Found</h4>
+        for(Product p:list){
+    %>
+
+        <div class="col-lg-4 col-md-6 col-sm-6">
+
+            <div class="card product-card h-100 shadow">
+
+                <img src="image/products/<%=p.getpPhoto()%>"
+                     class="card-img-top product-img"
+                     alt="<%=p.getpName()%>">
+
+                <div class="card-body text-center">
+
+                    <h5><%=p.getpName()%></h5>
 
                     <p>
-                        There are no products available in this category.
+                        <%=Helper.get10Words(p.getpDesc())%>
                     </p>
 
+                    <h5 class="text-success">
+                        ₹ <%=p.getPriceAfterApplyingDiscount()%>
+                    </h5>
+
+                    <small class="text-decoration-line-through text-muted">
+                        ₹ <%=p.getpPrice()%>
+                    </small>
+
+                    <span class="badge bg-danger">
+                        <%=p.getpDiscount()%>% OFF
+                    </span>
+
                 </div>
 
-            </div>
+                <div class="card-footer bg-white border-0 text-center">
 
-        <%
-        }
-        else{
+                    <button class="btn custom-bg text-white"
+                    onclick="add_to_cart(
+                        <%=p.getpId()%>,
+                        '<%=p.getpName()%>',
+                        <%=p.getPriceAfterApplyingDiscount()%>,
+                        <%=p.getpQuantity()%>
+                    )">
 
-            for(Product p : list){
-        %>
+                        Add to Cart
 
-            <div class="col-md-4 mb-4">
-
-                <div class="card shadow product-card h-100">
-
-                    <div class="text-center p-3">
-
-                        <img src="image/products/<%=p.getpPhoto()%>"
-                             class="card-img-top product-img"
-                             alt="<%=p.getpName()%>">
-
-                    </div>
-
-                    <div class="card-body text-center">
-
-                        <h5 class="fw-bold">
-                            <%=p.getpName()%>
-                        </h5>
-
-                        <p class="text-muted">
-                            <%=Helper.get10Words(p.getpDesc())%>
-                        </p>
-
-                    </div>
-
-                    <div class="card-footer bg-white border-0 text-center">
-
-                        <button class="btn custom-bg text-white">
-                            Add to Cart
-                        </button>
-
-                        <button class="btn btn-outline-primary">
-                            &#8377; <%=p.getpPrice()%>
-                        </button>
-
-                        <br><br>
-
-                        <%
-                        User user = (User)session.getAttribute("current-user");
-
-                        if(user != null && user.getUserType().equals("admin")){
-                        %>
-
-                            <a href="updateProduct.jsp?pid=<%=p.getpId()%>"
-                               class="btn btn-warning btn-sm">
-                                Update
-                            </a>
-
-                            <a href="DeleteProductServlet?pid=<%=p.getpId()%>"
-                               class="btn btn-danger btn-sm"
-                               onclick="return confirm('Are you sure you want to delete this product?');">
-                                Delete
-                            </a>
-
-                        <%
-                        }
-                        %>
-
-                    </div>
+                    </button>
 
                 </div>
 
             </div>
-
-        <%
-            }
-        }
-        %>
 
         </div>
+
+    <%
+        }
+    }
+    %>
 
     </div>
 
 </div>
+
+
+</div>
+
+</div>
+ <%@include file="components/common_modal.jsp" %>
