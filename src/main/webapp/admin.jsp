@@ -30,6 +30,9 @@ Long categoryCount = (Long) hsession.createQuery("select count(c) from Category 
 Long productCount = (Long) hsession.createQuery("select count(p) from Product p").uniqueResult();
 
 hsession.close();
+
+CategoryDao cdao2 = new CategoryDao(FactoryProvider.getFactory());
+List<Category> categories = cdao2.getCategories();
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -89,6 +92,7 @@ hsession.close();
 
     </div>
 
+    <!-- Add Category / Add Product Cards -->
     <div class="row">
 
         <div class="col-md-6 mb-4">
@@ -114,9 +118,6 @@ hsession.close();
                  data-bs-target="#add-product-modal"
                  style="cursor:pointer;">
 
-            <div class="card shadow border-0 text-center h-100"
-                 style="cursor:pointer;">
-
                 <div class="card-body p-5">
                     <img src="image/ecommerce.png" width="110">
                     <h3 class="text-success mt-4">Add Product</h3>
@@ -124,69 +125,70 @@ hsession.close();
                         Click here to add a new product.
                     </p>
                 </div>
-                <%
-CategoryDao cdao2 = new CategoryDao(FactoryProvider.getFactory());
-List<Category> categories = cdao2.getCategories();
-%>
-
-<div class="container mt-4">
-    <div class="card shadow">
-        <div class="card-header bg-primary text-white">
-            <h4>All Categories</h4>
-        </div>
-
-        <div class="card-body">
-
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Category Name</th>
-                        <th>Description</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                <% for(Category c : categories){ %>
-
-                    <tr>
-                        <td><%= c.getCategoryId() %></td>
-                        <td><%= c.getCategoryTitle() %></td>
-                        <td><%= c.getCategoryDescription() %></td>
-
-                        <td>
-
-                            <a href="DeleteCategoryServlet?cid=<%= c.getCategoryId() %>"
-                               class="btn btn-danger btn-sm"
-                               onclick="return confirm('Delete this category?');">
-
-                                Delete
-
-                            </a>
-
-                        </td>
-
-                    </tr>
-
-                <% } %>
-
-                </tbody>
-
-            </table>
-
-        </div>
-    </div>
-</div>
 
             </div>
-
         </div>
 
     </div>
 
+    <!-- All Categories Table (separate section, outside the cards) -->
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">All Categories</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Category Name</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <% for(Category c : categories){ %>
+
+                            <tr>
+                                <td><%= c.getCategoryId() %></td>
+                                <td><%= c.getCategoryTitle() %></td>
+                                <td><%= c.getCategoryDescription() %></td>
+
+                                <td>
+
+                                    <a href="DeleteCategoryServlet?cid=<%= c.getCategoryId() %>"
+                                       class="btn btn-danger btn-sm"
+                                       onclick="return confirm('Delete this category?');">
+
+                                        Delete
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+
+                        <% } %>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
 </div>
+
 <!-- add category modal -->
 
 <!-- Modal -->
@@ -229,17 +231,9 @@ List<Category> categories = cdao2.getCategories();
   </div>
 </div>
 
-
-
 <!-- end category modal -->
 
-
-
 <!--Start product modal-->
-
-
-</div>
-</div>
 
 <!-- Modal -->
 <div class="modal fade" id="add-product-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -327,6 +321,7 @@ List<Category> list = cdao.getCategories();
         <% } %>
 
     </select>
+</div>
 
     <!-- Product Image -->
     <div class="mb-3">
@@ -363,7 +358,5 @@ List<Category> list = cdao.getCategories();
     </div>
   </div>
 </div>
-Static backdrop
-
 
 <!--End product modal-->

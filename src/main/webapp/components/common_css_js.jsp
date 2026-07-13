@@ -31,4 +31,12 @@ body{
 .toast-body{
     font-size: 16px;
 }
+
+.navbar-nav .nav-link {
+    color: #ffffff !important;
+}
+.navbar-nav .nav-link:hover {
+    color: #dbe4ff !important;
+}
+</style>
 </style>
