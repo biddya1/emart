@@ -21,17 +21,17 @@ User user1 = (User) session.getAttribute("current-user");
 
         <!-- Left Side -->
         <ul class="navbar-nav me-3">
-    <li class="nav-item">
-        <a class="nav-link active" href="index.jsp">
-            Home
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="about.jsp">
-            About
-        </a>
-    </li>
-</ul>
+            <li class="nav-item">
+                <a class="nav-link active" href="index.jsp">
+                    Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about.jsp">
+                    About
+                </a>
+            </li>
+        </ul>
 
         <!-- Search Bar -->
         <form class="d-flex mx-auto my-2 my-lg-0" style="max-width:420px;width:100%;" action="index.jsp" method="get">
@@ -42,6 +42,7 @@ User user1 = (User) session.getAttribute("current-user");
                 <input type="text"
                        name="search"
                        class="form-control border-0"
+                       value='<%=request.getParameter("search")!=null?request.getParameter("search"):""%>'
                        placeholder="Search products...">
             </div>
         </form>
@@ -75,6 +76,17 @@ User user1 = (User) session.getAttribute("current-user");
             <%
             }else{
             %>
+                <%
+                if(user1.getUserType().equals("admin")){
+                %>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin.jsp">
+                        <i class="fa-solid fa-gauge"></i> Admin Dashboard
+                    </a>
+                </li>
+                <%
+                }
+                %>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <%=user1.getUserName()%>

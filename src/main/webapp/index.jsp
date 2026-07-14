@@ -17,7 +17,7 @@
      style="background:linear-gradient(135deg,#1e3a8a,#3b82f6);">
     <div class="container">
         <h1 class="fw-bold display-5 mb-2">Big Deals, Every Day 🛍️</h1>
-        <p class="lead mb-0">Shop the latest trends across Fashion, Electronics, Toys & more.</p>
+        <p class="lead mb-0">Shop the latest trends across Fashion, Electronics, Toys & more — proudly supporting local products.</p>
     </div>
 </div>
 
@@ -27,6 +27,7 @@
 
 <%
 String cat = request.getParameter("category");
+String search = request.getParameter("search");
 
 CategoryDao cdao = new CategoryDao(FactoryProvider.getFactory());
 List<Category> clist = cdao.getCategories();
@@ -40,6 +41,19 @@ if(cat == null || cat.trim().equals("all")){
 else{
     int cid = Integer.parseInt(cat.trim());
     list = pdao.getAllProductsById(cid);
+}
+
+if(search != null && !search.trim().equals("")){
+    String keyword = search.trim().toLowerCase();
+    List<Product> filtered = new java.util.ArrayList<Product>();
+
+    for(Product p : list){
+        if(p.getpName().toLowerCase().contains(keyword)){
+            filtered.add(p);
+        }
+    }
+
+    list = filtered;
 }
 %>
 
