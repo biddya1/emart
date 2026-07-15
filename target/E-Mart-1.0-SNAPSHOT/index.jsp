@@ -13,11 +13,26 @@
 <%@include file="components/navbar.jsp"%>
 
 <!-- Hero Banner -->
-<div class="text-white text-center py-5 mb-4"
-     style="background:linear-gradient(135deg,#1e3a8a,#3b82f6);">
+<div class="text-white py-3 mb-4"
+     style="background:linear-gradient(120deg,#0f172a,#1e3a8a 55%,#2563eb);">
     <div class="container">
-        <h1 class="fw-bold display-5 mb-2">Big Deals, Every Day 🛍️</h1>
-        <p class="lead mb-0">Shop the latest trends across Fashion, Electronics, Toys & more — proudly supporting local products.</p>
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <span class="badge bg-warning text-dark mb-2 px-2 py-1" style="font-size:11px;letter-spacing:1px;">
+                    NEW ARRIVALS EVERY WEEK
+                </span>
+                <h1 class="fw-bold mb-2" style="font-size:32px;">
+                    Big Deals, <span style="color:#93c5fd;">Every Day</span>
+                </h1>
+                <p class="mb-3" style="font-size:14px;color:#cbd5e1;max-width:520px;">
+                    Explore authentic local products including fresh vegetables, homemade foods, traditional wear, handicrafts, and daily essentials 
+                    — all from trusted local seller.
+                </p>
+                <a href="index.jsp?category=all" class="btn btn-light btn-sm px-3 rounded-pill fw-bold">
+                    Shop Now <i class="fa-solid fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 

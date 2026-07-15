@@ -43,6 +43,7 @@ User user = (User) session.getAttribute("current-user");
 if(user != null && user.getUserType().equals("admin")){
 %>
 
+
 <button class="btn btn-primary"
         onclick="checkout()">
     Checkout
@@ -52,14 +53,11 @@ if(user != null && user.getUserType().equals("admin")){
 }else{
 %>
 
-<button class="btn btn-secondary" disabled>
-    Checkout
-</button>
-
-<small class="text-danger ms-2">
-    Only Admin can checkout.
-</small>
-
+ <!-- Customer -->
+        <button class="btn btn-success"
+                onclick="BuyNow()">
+            Buy Now
+        </button>
 <%
 }
 %>

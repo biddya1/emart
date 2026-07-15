@@ -64,8 +64,22 @@ public class RegisterServlet extends HttpServlet {
                 return;
 
             } catch (Exception e) {
-    e.printStackTrace();
-}
+
+                HttpSession httpSession = request.getSession();
+
+                if (e.getCause() != null &&
+                        e.getCause().getMessage().contains("Duplicate entry")) {
+
+                    httpSession.setAttribute("message", "Email already exists!");
+
+                } else {
+
+                    httpSession.setAttribute("message", "Something went wrong!");
+                    e.printStackTrace();
+                }
+
+                response.sendRedirect("register.jsp");
+            }
 
         }
     }

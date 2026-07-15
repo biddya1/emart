@@ -29,11 +29,14 @@
         <div class="col-md-6">
             <h2 class="fw-bold mb-3" style="color:#1e3a8a;">Who We Are</h2>
             <p class="text-muted" style="font-size:16px;line-height:1.8;">
-                E-Mart is an online marketplace built to make everyday shopping easier.
-                From electronics and fashion to toys and home essentials, we bring a wide
-                range of quality products together in one simple platform. Our goal is to
-                give every customer a smooth, secure, and enjoyable shopping experience
-                from browsing to checkout.
+
+E-Mart is an online marketplace created to connect customers with authentic, locally made products. Our platform is dedicated to empowering local businesses, artisans, farmers, and small-scale producers by giving them a space to showcase and sell their products to a wider audience.
+
+We believe that every local product carries a unique story, reflects our culture, and deserves recognition. By promoting locally made goods, we aim to support local entrepreneurs, strengthen communities, and contribute to sustainable economic growth.
+
+Our mission is to make it easy for customers to discover and purchase quality local products while providing a secure, convenient, and enjoyable shopping experience. At E-Mart, every purchase helps support local creators and encourages the growth of homegrown businesses.
+
+                
             </p>
         </div>
     </div>
