@@ -39,25 +39,15 @@ User user = (User) session.getAttribute("current-user");
                     Close
                 </button>
 
-                <%
-if(user != null && user.getUserType().equals("admin")){
+     <%
+if(user != null && user.getUserType().equals("normal")){
 %>
 
-
-<button class="btn btn-primary"
+<button class="btn btn-success"
         onclick="checkout()">
     Checkout
 </button>
 
-<%
-}else{
-%>
-
- <!-- Customer -->
-        <button class="btn btn-success"
-                onclick="BuyNow()">
-            Buy Now
-        </button>
 <%
 }
 %>

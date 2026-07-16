@@ -222,5 +222,8 @@ if(search != null && !search.trim().equals("")){
 </div>
 
 </div>
+        <script>
+    var isUserLoggedIn = <%= session.getAttribute("current-user") != null %>;
+</script>
 
  <%@include file="components/common_modal.jsp" %>

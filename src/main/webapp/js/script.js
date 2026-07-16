@@ -1,12 +1,19 @@
-
 // ===================== ADD TO CART =====================
 
 function add_to_cart(pid, pname, price, stock)
 {
-   console.log(pid);
-console.log(pname);
-console.log(price);
-console.log(stock);
+    if(!isUserLoggedIn)
+    {
+        alert("Please login first to add products to cart.");
+        window.location.href = "login.jsp";
+        return;
+    }
+
+    console.log(pid);
+    console.log(pname);
+    console.log(price);
+    console.log(stock);
+
     let cart = localStorage.getItem("cart");
 
     if(cart == null)
@@ -25,9 +32,8 @@ console.log(stock);
 
         localStorage.setItem("cart", JSON.stringify(products));
 
-           showToast( pname,"Added to cart successfully 🛒"
-);  
- }
+        showToast(pname, "Added to cart successfully 🛒");
+    }
     else
     {
         let pcart = JSON.parse(cart);
@@ -42,10 +48,8 @@ console.log(stock);
 
                 localStorage.setItem("cart", JSON.stringify(pcart));
 
-            showToast(
-    pname,
-    "Quantity increased 🔼"
-);           }
+                showToast(pname, "Quantity increased 🔼");
+            }
             else
             {
                 alert("Only " + oldProduct.productStock + " item(s) are available in stock.");
@@ -65,15 +69,12 @@ console.log(stock);
 
             localStorage.setItem("cart", JSON.stringify(pcart));
 
-          showToast(
-    pname,
-    "Added to cart successfully 🛒"
-);       }
+            showToast(pname, "Added to cart successfully 🛒");
+        }
     }
 
     updateCart();
 }
-
 
 
 // ===================== UPDATE CART =====================
@@ -122,15 +123,10 @@ function updateCart()
 
         table += `
         <tr>
-
             <td>${item.productName}</td>
-
             <td>₹ ${item.productPrice}</td>
-
             <td>${item.productQuantity}</td>
-
             <td>₹ ${item.productPrice * item.productQuantity}</td>
-
             <td>
                 <button
                     class="btn btn-danger btn-sm"
@@ -138,10 +134,8 @@ function updateCart()
                     Remove
                 </button>
             </td>
-
         </tr>
         `;
-
     });
 
     table += `
@@ -156,7 +150,6 @@ function updateCart()
 
     $(".cart-body").html(table);
 }
-
 
 
 // ===================== REMOVE ITEM =====================
@@ -175,7 +168,6 @@ function deleteItemFromCart(pid)
 }
 
 
-
 // ===================== PAGE LOAD =====================
 
 $(document).ready(function(){
@@ -183,7 +175,10 @@ $(document).ready(function(){
     updateCart();
 
 });
-// Close Cart Modal
+
+
+// ===================== CLOSE CART =====================
+
 function closeCart()
 {
     let cartModal = document.getElementById("cart");
@@ -195,7 +190,6 @@ function closeCart()
         modal.hide();
     }
 
-    // remove background problem
     document.querySelectorAll(".modal-backdrop").forEach(function(item){
         item.remove();
     });
@@ -204,7 +198,8 @@ function closeCart()
 }
 
 
-// Checkout
+// ===================== CHECKOUT =====================
+
 function checkout()
 {
     let cart = localStorage.getItem("cart");
@@ -224,19 +219,19 @@ function checkout()
         closeCart();
     }
 }
+
+
+// ===================== TOAST =====================
+
 function showToast(productName, message)
 {
-
-    $("#toastMessage").html(
-        `
+    $("#toastMessage").html(`
         <div>
             <b>${productName}</b>
             <br>
             ${message}
         </div>
-        `
-    );
-
+    `);
 
     let toastElement = document.getElementById("cartToast");
 
@@ -245,5 +240,4 @@ function showToast(productName, message)
     });
 
     toast.show();
-
 }

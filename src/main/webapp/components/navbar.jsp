@@ -143,6 +143,11 @@ User user1 = (User) session.getAttribute("current-user");
                     About
                 </a>
             </li>
+            <li class="nav-item">
+    <a class="nav-link" href="help.jsp">
+        Help & Support
+    </a>
+</li>
         </ul>
 
         <!-- Search Bar -->
