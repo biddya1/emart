@@ -13,10 +13,10 @@ public class Helper {
         {
         res=res+strs[i]+" ";    
         }
-        return (res+".....");
+        return (res+"");
        }else
        {
-           return (desc+".....");
+           return (desc+"");
        }
    }
 }

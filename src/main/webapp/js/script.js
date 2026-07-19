@@ -200,6 +200,7 @@ function closeCart()
 
 // ===================== CHECKOUT =====================
 
+
 function checkout()
 {
     let cart = localStorage.getItem("cart");
@@ -207,18 +208,42 @@ function checkout()
     if(cart == null || JSON.parse(cart).length == 0)
     {
         alert("Your cart is empty");
+        return;
     }
-    else
-    {
-        alert("Order placed successfully");
 
-        localStorage.removeItem("cart");
+    $.ajax({
+        url: "OrderServlet",
+        type: "POST",
+        data: { cart: cart },
+        success: function(response)
+        {
+            if(response.trim() === "Order placed successfully")
+            {
+                alert("Order placed successfully!");
 
-        updateCart();
+                localStorage.removeItem("cart");
 
-        closeCart();
-    }
+                updateCart();
+
+                closeCart();
+            }
+            else if(response.trim() === "Please login first")
+            {
+                alert("Please login first to place an order.");
+                window.location.href = "login.jsp";
+            }
+            else
+            {
+                alert(response);
+            }
+        },
+        error: function()
+        {
+            alert("Something went wrong while placing the order. Please try again.");
+        }
+    });
 }
+
 
 
 // ===================== TOAST =====================

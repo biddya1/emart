@@ -168,6 +168,9 @@ User user1 = (User) session.getAttribute("current-user");
         <ul class="navbar-nav ms-auto align-items-lg-center">
 
             <!-- Cart -->
+            <%
+            if(user1 == null || !user1.getUserType().equals("admin")){
+            %>
             <li class="nav-item">
                 <a class="nav-link"
                    href="#"
@@ -180,6 +183,9 @@ User user1 = (User) session.getAttribute("current-user");
                     </span>
                 </a>
             </li>
+            <%
+            }
+            %>
 
             <%
             if(user1 == null){

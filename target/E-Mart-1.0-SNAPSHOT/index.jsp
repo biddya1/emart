@@ -70,6 +70,8 @@ if(search != null && !search.trim().equals("")){
 
     list = filtered;
 }
+
+User loggedUser = (User)session.getAttribute("current-user");
 %>
 
     <!-- Categories -->
@@ -147,16 +149,47 @@ if(search != null && !search.trim().equals("")){
 
                         <h5><%=p.getpName()%></h5>
 
-                        <p>
-                            <%=Helper.get10Words(p.getpDesc())%>
-                        </p>
+                      <p class="card-text">
+
+<%
+String desc = p.getpDesc();
+
+if(desc.length() > 60){
+%>
+
+    <span id="shortDesc<%=p.getpId()%>">
+        <%= desc.substring(0,60) %>...
+    </span>
+
+    <span id="fullDesc<%=p.getpId()%>" style="display:none;">
+        <%= desc %>
+    </span>
+
+    <a href="javascript:void(0)"
+       id="btn<%=p.getpId()%>"
+       onclick="toggleDescription(<%=p.getpId()%>)"
+       style="font-size:14px;text-decoration:none;">
+        See More
+    </a>
+
+<%
+}else{
+%>
+
+    <%= desc %>
+
+<%
+}
+%>
+
+</p>
 
                         <h5 class="text-success">
-                            ₹ <%=p.getPriceAfterApplyingDiscount()%>
+                            रु <%=p.getPriceAfterApplyingDiscount()%>
                         </h5>
 
                         <small class="text-decoration-line-through text-muted">
-                            ₹ <%=p.getpPrice()%>
+                            रु <%=p.getpPrice()%>
                         </small>
 
                         <span class="badge bg-danger">
@@ -166,6 +199,10 @@ if(search != null && !search.trim().equals("")){
                     </div>
 
                     <div class="card-footer bg-white border-0 text-center">
+
+                        <%
+                        if(loggedUser == null || !loggedUser.getUserType().equals("admin")){
+                        %>
 
                         <button class="btn custom-bg text-white"
                         onclick="add_to_cart(
@@ -180,8 +217,10 @@ if(search != null && !search.trim().equals("")){
                         </button>
 
                         <%
-                        User loggedUser = (User)session.getAttribute("current-user");
+                        }
+                        %>
 
+                        <%
                         if(loggedUser != null && loggedUser.getUserType().equals("admin")){
                         %>
 
@@ -224,6 +263,29 @@ if(search != null && !search.trim().equals("")){
 </div>
         <script>
     var isUserLoggedIn = <%= session.getAttribute("current-user") != null %>;
+</script>
+<script>
+function toggleDescription(id){
+
+    var shortDesc=document.getElementById("shortDesc"+id);
+    var fullDesc=document.getElementById("fullDesc"+id);
+    var btn=document.getElementById("btn"+id);
+
+    if(fullDesc.style.display==="none"){
+
+        shortDesc.style.display="none";
+        fullDesc.style.display="inline";
+        btn.innerHTML=" See Less";
+
+    }else{
+
+        shortDesc.style.display="inline";
+        fullDesc.style.display="none";
+        btn.innerHTML=" See More";
+
+    }
+
+}
 </script>
 
  <%@include file="components/common_modal.jsp" %>

@@ -131,6 +131,20 @@ List<Category> categories = cdao2.getCategories();
 
     </div>
 
+    <!-- Manage Orders Card -->
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <a href="manageOrders.jsp" class="text-decoration-none">
+                <div class="card shadow border-0 text-center py-4" style="cursor:pointer;">
+                    <h4 class="text-primary mb-0">
+                        <i class="fa-solid fa-clipboard-list"></i> Manage Orders
+                    </h4>
+                    <p class="text-muted mb-0">View and update customer orders</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
     <!-- All Categories Table (separate section, outside the cards) -->
     <div class="row">
         <div class="col-md-12 mb-4">

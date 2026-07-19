@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -34,6 +37,8 @@ private String userEmail;
 
     @Column(name = "user_type")
     private String userType;
+    @OneToMany(mappedBy="user")
+private List<Orders> orders = new ArrayList<>();
 
     public User() {
     }
@@ -129,6 +134,14 @@ private String userEmail;
     public void setUserType(String userType) {
         this.userType = userType;
     }
+    public List<Orders> getOrders() {
+    return orders;
+}
+
+public void setOrders(List<Orders> orders) {
+    this.orders = orders;
+}
+    
 
     @Override
     public String toString() {
